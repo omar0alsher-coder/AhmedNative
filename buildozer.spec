@@ -19,3 +19,4 @@ p4a.bootstrap = kivy
 log_level = 2
 warn_on_root = 1
 android.archs = arm64-v8a
+p4a.branch = develop
