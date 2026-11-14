@@ -1,4 +1,6 @@
 [app]
+requirements = python3,kivy==2.3.0,requests
+p4a.branch = master
 title = Ahmed Native
 package.name = ahmednative
 package.domain = org.ahmed
@@ -17,5 +19,3 @@ p4a.bootstrap = sdl2
 [buildozer]
 log_level = 2
 warn_on_root = 1
-requirements = python3,kivy==2.3.0,requests
-p4a.branch = master
