@@ -17,5 +17,5 @@ p4a.bootstrap = sdl2
 [buildozer]
 log_level = 2
 warn_on_root = 1
-requirements = python3==3.11,kivy==https://github.com/kivy/kivy/archive/refs/tags/2.3.1.zip,cython==3.0.11,requests
-p4a.branch = develop
+requirements = python3,kivy==2.3.0,requests
+p4a.branch = master
