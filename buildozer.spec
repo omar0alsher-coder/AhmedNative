@@ -5,6 +5,7 @@ package.domain = org.ahmed
 source.dir = .
 source.include_exts = py,png,jpg,kv,atlas
 version = 1.0.0
+requirements = python3,kivy==2.3.0,requests
 orientation = portrait
 fullscreen = 0
 android.permissions = INTERNET
@@ -17,6 +18,3 @@ p4a.bootstrap = sdl2
 [buildozer]
 log_level = 2
 warn_on_root = 1
-android.archs = arm64-v8a
-p4a.branch = develop
-requirements = python3,kivy,requests,urllib3,certifi,charset-normalizer,idna

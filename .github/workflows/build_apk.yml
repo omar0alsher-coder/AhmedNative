@@ -1,46 +1,27 @@
 name: Build Native APK
-
-on:
-  push:
-    branches: [ main ]
-  workflow_dispatch:
-
+on: [push, workflow_dispatch]
 jobs:
   build-android:
     runs-on: ubuntu-22.04
     steps:
       - uses: actions/checkout@v4
-
-      - name: Install system dependencies FIRST
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.10'
+      - name: Install Dependencies
         run: |
           sudo apt-get update
           sudo apt-get install -y git zip unzip openjdk-17-jdk autoconf libtool pkg-config zlib1g-dev libncurses5-dev libncursesw5-dev cmake libffi-dev libssl-dev automake libltdl-dev
-
-      - name: Set up Python 3.9
-        uses: actions/setup-python@v5
-        with:
-          python-version: '3.9'
-
-      - name: Force Python 3.9 as python3 (AFTER apt)
+      - name: Install Buildozer
         run: |
-          sudo update-alternatives --install /usr/bin/python3 python3 $(which python3.9) 1
-          sudo update-alternatives --set python3 $(which python3.9)
-          python3 --version
-
-      - name: Install buildozer with pinned pip
-        run: |
-          python3 -m pip install --upgrade "pip<24.1" "setuptools<70" wheel
-          python3 -m pip install buildozer "cython<3.0" virtualenv
-
+          python -m pip install --upgrade pip
+          python -m pip install buildozer cython==0.29.36 virtualenv
       - name: Build APK
         run: |
           export BUILDOZER_WARN_ON_ROOT=1
           buildozer -v android debug
-
       - name: Upload APK
-        if: always()
         uses: actions/upload-artifact@v4
         with:
           name: ahmed-native-apk
           path: bin/*.apk
-          if-no-files-found: warn
